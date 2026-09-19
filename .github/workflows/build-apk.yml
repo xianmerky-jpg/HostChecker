@@ -1,0 +1,25 @@
+name: Build Host Checker APK
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v6
+        with:
+          gradle-version: '8.6'
+      - run: gradle clean assembleDebug --stacktrace
+      - uses: actions/upload-artifact@v4
+        with:
+          name: HostChecker-debug
+          path: app/build/outputs/apk/debug/*.apk
