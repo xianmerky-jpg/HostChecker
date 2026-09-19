@@ -137,15 +137,18 @@ class MainActivity : Activity() {
             c.drawRect(0f, 0f, width.toFloat(), 64f * d, p)
 
             p.color = Color.WHITE
-            p.strokeWidth = 2f * d
+            p.strokeWidth = 1.5f * d
             p.style = Paint.Style.STROKE
             p.strokeCap = Paint.Cap.ROUND
-            c.drawLine(24f * d, 32f * d, 36f * d, 32f * d, p)
-            c.drawLine(24f * d, 32f * d, 32f * d, 24f * d, p)
-            c.drawLine(24f * d, 32f * d, 32f * d, 40f * d, p)
+            c.drawLine(28f * d, 32f * d, 36f * d, 32f * d, p)
+            c.drawLine(28f * d, 32f * d, 33f * d, 27f * d, p)
+            c.drawLine(28f * d, 32f * d, 33f * d, 37f * d, p)
             p.style = Paint.Style.FILL
 
-            text("Host Checker", 20f, Color.WHITE, 52f, 37f)
+            p.typeface = Typeface.create("sans-serif", Typeface.NORMAL)
+            p.textSize = 18f * d
+            p.color = Color.WHITE
+            drawCanvas.drawText("Host Checker", 48f * d, 38f * d, p)
 
             p.color = Color.WHITE
             c.drawCircle(340f * d, 26f * d, 2f * d, p)
