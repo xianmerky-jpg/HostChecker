@@ -28,12 +28,12 @@ class MainActivity : Activity() {
         edit = EditText(this).apply {
             setTextColor(Color.rgb(232, 225, 232))
             setHintTextColor(Color.TRANSPARENT)
-            textSize = 19f
+            textSize = 14f
             isSingleLine = true
             inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_URI
-            setPadding(dp(16), 0, dp(10), 0)
+            setPadding(dp(8), 0, dp(8), 0)
             background = ColorDrawable(Color.TRANSPARENT)
-            includeFontPadding = true
+            includeFontPadding = false
         }
         root.addView(edit)
         edit.setOnFocusChangeListener { _, _ -> canvas.invalidate() }
@@ -44,10 +44,10 @@ class MainActivity : Activity() {
 
     private fun positionEdit() {
         val lp = edit.layoutParams as FrameLayout.LayoutParams
-        lp.leftMargin = dp(18)
-        lp.topMargin = dp(90)
-        lp.width = dp(228)
-        lp.height = dp(34)
+        lp.leftMargin = dp(20)
+        lp.topMargin = dp(91)
+        lp.width = dp(218)
+        lp.height = dp(32)
         edit.layoutParams = lp
     }
 
@@ -67,12 +67,12 @@ class MainActivity : Activity() {
         val pw = PopupWindow(box, dp(widthDp), -2, true)
         items.forEach { item ->
             val t = android.widget.TextView(this).apply {
-                text = item; textSize = 18f; setTextColor(Color.WHITE)
+                text = item; textSize = 16f; setTextColor(Color.WHITE)
                 gravity = Gravity.CENTER_VERTICAL
-                setPadding(dp(20), dp(13), dp(20), dp(13))
+                setPadding(dp(16), dp(12), dp(16), dp(12))
                 setOnClickListener { onPick(item); pw.dismiss() }
             }
-            box.addView(t, android.widget.LinearLayout.LayoutParams(-1, dp(52)))
+            box.addView(t, android.widget.LinearLayout.LayoutParams(-1, dp(46)))
         }
         pw.setBackgroundDrawable(ColorDrawable(Color.rgb(55, 55, 55)))
         pw.showAtLocation(root, Gravity.TOP or Gravity.LEFT, x.toInt(), y.toInt())
@@ -122,120 +122,112 @@ class MainActivity : Activity() {
         }
 
         private fun text(s: String, size: Float, color: Int, x: Float, y: Float) {
-            p.typeface = Typeface.create("sans", Typeface.NORMAL)
-            p.textSize = dp(size)
+            p.typeface = Typeface.create("sans-serif", Typeface.NORMAL)
+            p.textSize = size * resources.displayMetrics.density
             p.color = color
-            drawCanvas.drawText(s, dp(x), dp(y), p)
+            drawCanvas.drawText(s, x * resources.displayMetrics.density, y * resources.displayMetrics.density, p)
         }
 
-        private fun dp(v: Float) = v * resources.displayMetrics.density
+        private fun px(dp: Float) = dp * resources.displayMetrics.density
 
         override fun onDraw(c: Canvas) {
             super.onDraw(c)
             drawCanvas = c
+            val d = resources.displayMetrics.density
 
             p.color = teal
-            c.drawRect(0f, 0f, width.toFloat(), dp(64f), p)
+            c.drawRect(0f, 0f, width.toFloat(), 64f * d, p)
 
             p.color = Color.WHITE
-            p.strokeWidth = dp(2.5f)
+            p.strokeWidth = 2f * d
             p.style = Paint.Style.STROKE
             p.strokeCap = Paint.Cap.ROUND
-            c.drawLine(dp(20f), dp(32f), dp(36f), dp(32f), p)
-            c.drawLine(dp(20f), dp(32f), dp(30f), dp(22f), p)
-            c.drawLine(dp(20f), dp(32f), dp(30f), dp(42f), p)
+            c.drawLine(18f * d, 28f * d, 28f * d, 28f * d, p)
+            c.drawLine(18f * d, 28f * d, 24f * d, 22f * d, p)
+            c.drawLine(18f * d, 28f * d, 24f * d, 34f * d, p)
             p.style = Paint.Style.FILL
 
-            text("Host Checker", 22f, Color.WHITE, 52f, 40f)
+            text("Host Checker", 18f, Color.WHITE, 42f, 33f)
 
             p.color = Color.WHITE
-            c.drawCircle(dp(340f), dp(24f), dp(2.5f), p)
-            c.drawCircle(dp(340f), dp(32f), dp(2.5f), p)
-            c.drawCircle(dp(340f), dp(40f), dp(2.5f), p)
+            c.drawCircle(336f * d, 22f * d, 1.8f * d, p)
+            c.drawCircle(336f * d, 28f * d, 1.8f * d, p)
+            c.drawCircle(336f * d, 34f * d, 1.8f * d, p)
 
-            val inputLeft = dp(10f)
-            val inputTop = dp(80f)
-            val inputRight = dp(248f)
-            val inputBottom = dp(124f)
+            val iL = 16f * d; val iT = 72f * d; val iR = 240f * d; val iB = 116f * d
             p.style = Paint.Style.STROKE
-            p.strokeWidth = dp(2f)
+            p.strokeWidth = 1.5f * d
             p.color = teal
-            c.drawRoundRect(inputLeft, inputTop, inputRight, inputBottom, dp(4f), dp(4f), p)
+            c.drawRoundRect(iL, iT, iR, iB, 3f * d, 3f * d, p)
             p.style = Paint.Style.FILL
 
             p.color = bg
-            c.drawRect(dp(14f), dp(76f), dp(170f), dp(84f), p)
+            c.drawRect(20f * d, 68f * d, 155f * d, 75f * d, p)
 
-            text("URL (eg: www.facebook.com)", 11f, teal, 16f, 82f)
+            text("URL (eg: www.facebook.com)", 11f, teal, 22f, 73f)
 
             p.color = teal
-            p.strokeWidth = dp(1.5f)
+            p.strokeWidth = 1.5f * d
             p.style = Paint.Style.STROKE
-            c.drawLine(dp(20f), dp(94f), dp(20f), dp(116f), p)
+            c.drawLine(22f * d, 86f * d, 22f * d, 108f * d, p)
             p.style = Paint.Style.FILL
 
-            text(method, 16f, primary, 256f, 106f)
-            drawDown(c, 312f, 102f)
-
-            p.style = Paint.Style.STROKE
-            p.strokeWidth = dp(2f)
+            text(method, 15f, primary, 252f, 99f)
             p.color = primary
-            c.drawRect(dp(14f), dp(136f), dp(30f), dp(152f), p)
+            val dp1 = Path(); dp1.moveTo(300f * d, 95f * d); dp1.lineTo(308f * d, 95f * d); dp1.lineTo(304f * d, 101f * d); dp1.close(); c.drawPath(dp1, p)
+
+            p.style = Paint.Style.STROKE
+            p.strokeWidth = 1.5f * d
+            p.color = primary
+            c.drawRect(18f * d, 130f * d, 32f * d, 144f * d, p)
             p.style = Paint.Style.FILL
 
-            text("Proxy", 16f, primary, 36f, 151f)
+            text("Proxy", 15f, primary, 38f, 143f)
 
-            text(header, 16f, primary, 210f, 151f)
-            drawDown(c, 312f, 147f)
+            text(header, 15f, primary, 204f, 143f)
+            p.color = primary
+            val dp2 = Path(); dp2.moveTo(300f * d, 139f * d); dp2.lineTo(308f * d, 139f * d); dp2.lineTo(304f * d, 145f * d); dp2.close(); c.drawPath(dp2, p)
 
             p.color = teal
-            c.drawRoundRect(dp(14f), dp(166f), width - dp(14f), dp(206f), dp(24f), dp(24f), p)
+            c.drawRoundRect(16f * d, 158f * d, width - 16f * d, 196f * d, 20f * d, 20f * d, p)
             p.textAlign = Paint.Align.CENTER
-            p.textSize = dp(17f)
+            p.typeface = Typeface.create("sans-serif", Typeface.NORMAL)
+            p.textSize = 16f * d
             p.color = Color.WHITE
-            c.drawText("Check", width / 2f, dp(191f), p)
+            c.drawText("Check", width / 2f, 183f * d, p)
             p.textAlign = Paint.Align.LEFT
 
             if (checked) drawResponse(c)
         }
 
-        private fun drawDown(c: Canvas, x: Float, y: Float) {
-            p.color = primary
-            val path = Path()
-            path.moveTo(dp(x - 5f), dp(y - 2f))
-            path.lineTo(dp(x + 5f), dp(y - 2f))
-            path.lineTo(dp(x), dp(y + 4f))
-            path.close()
-            c.drawPath(path, p)
-        }
-
         private fun drawResponse(c: Canvas) {
-            var y = dp(220f)
-            p.strokeWidth = dp(1f)
+            val d = resources.displayMetrics.density
+            var y = 210f * d
+            p.strokeWidth = 1f * d
             for ((i, s) in response.withIndex()) {
                 if (i == 0) {
                     p.typeface = Typeface.DEFAULT
-                    text(s, 16f, secondary, 6f, y / dp(1f))
+                    text(s, 14f, secondary, 6f, y / d)
                 } else {
-                    text(s, 16f, if (s == "Stopped") primary else secondary, 6f, y / dp(1f))
+                    text(s, 14f, if (s == "Stopped") primary else secondary, 6f, y / d)
                 }
                 p.color = divider
-                c.drawRect(dp(6f), y + dp(8f), width - dp(6f), y + dp(9f), p)
-                y += dp(20f)
+                c.drawRect(6f * d, y + 8f * d, width - 6f * d, y + 9f * d, p)
+                y += 20f * d
             }
             p.typeface = Typeface.DEFAULT_BOLD
         }
 
         override fun onTouchEvent(e: android.view.MotionEvent): Boolean {
             if (e.action != MotionEvent.ACTION_UP) return true
-            val x = e.x / density
-            val y = e.y / density
+            val d = resources.displayMetrics.density
+            val x = e.x / d; val y = e.y / d
             when {
-                y in 78f..126f && x < 248f -> { showKeyboard(); return true }
-                y in 78f..126f && x >= 248f -> { popup(listOf("GET", "POST", "HEAD"), dp(248f), dp(80f), 100) { method = it; invalidate() }; return true }
-                y in 130f..158f && x < 200f -> { proxy = !proxy; invalidate(); return true }
-                y in 130f..158f && x >= 200f -> { popup(listOf("Header", "User-Agent", "Cookie"), dp(200f), dp(124f), 140) { header = it; invalidate() }; return true }
-                y in 162f..210f -> { checked = true; invalidate(); return true }
+                y in 70f..118f && x < 240f -> { showKeyboard(); return true }
+                y in 70f..118f && x >= 240f -> { popup(listOf("GET", "POST", "HEAD"), 240f * d, 72f * d, 90) { method = it; invalidate() }; return true }
+                y in 126f..148f && x < 180f -> { proxy = !proxy; invalidate(); return true }
+                y in 126f..148f && x >= 180f -> { popup(listOf("Header", "User-Agent", "Cookie"), 180f * d, 116f * d, 120) { header = it; invalidate() }; return true }
+                y in 154f..200f -> { checked = true; invalidate(); return true }
             }
             return true
         }
