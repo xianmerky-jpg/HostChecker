@@ -30,7 +30,7 @@ class MainActivity : Activity() {
             setTextColor(Color.rgb(232,225,232))
             setHintTextColor(Color.TRANSPARENT)
             textSize = 19f
-            singleLine = true
+            isSingleLine = true
             inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_URI
             setPadding(dp(16), 0, dp(10), 0)
             background = ColorDrawable(Color.TRANSPARENT)
