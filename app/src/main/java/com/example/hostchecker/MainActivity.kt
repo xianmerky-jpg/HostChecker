@@ -46,7 +46,7 @@ class MainActivity : Activity() {
         val lp = edit.layoutParams as FrameLayout.LayoutParams
         lp.leftMargin = dp(20)
         lp.topMargin = dp(86)
-        lp.width = dp(220)
+        lp.width = dp(218)
         lp.height = dp(30)
         edit.layoutParams = lp
     }
@@ -134,25 +134,25 @@ class MainActivity : Activity() {
             val d = resources.displayMetrics.density
 
             p.color = teal
-            c.drawRect(0f, 0f, width.toFloat(), 60f * d, p)
+            c.drawRect(0f, 0f, width.toFloat(), 64f * d, p)
 
             p.color = Color.WHITE
             p.strokeWidth = 2f * d
             p.style = Paint.Style.STROKE
             p.strokeCap = Paint.Cap.ROUND
-            c.drawLine(16f * d, 30f * d, 30f * d, 30f * d, p)
-            c.drawLine(16f * d, 30f * d, 24f * d, 22f * d, p)
-            c.drawLine(16f * d, 30f * d, 24f * d, 38f * d, p)
+            c.drawLine(24f * d, 32f * d, 36f * d, 32f * d, p)
+            c.drawLine(24f * d, 32f * d, 32f * d, 24f * d, p)
+            c.drawLine(24f * d, 32f * d, 32f * d, 40f * d, p)
             p.style = Paint.Style.FILL
 
-            text("Host Checker", 20f, Color.WHITE, 44f, 35f)
+            text("Host Checker", 20f, Color.WHITE, 52f, 37f)
 
             p.color = Color.WHITE
-            c.drawCircle(338f * d, 24f * d, 2f * d, p)
-            c.drawCircle(338f * d, 30f * d, 2f * d, p)
-            c.drawCircle(338f * d, 36f * d, 2f * d, p)
+            c.drawCircle(340f * d, 26f * d, 2f * d, p)
+            c.drawCircle(340f * d, 32f * d, 2f * d, p)
+            c.drawCircle(340f * d, 38f * d, 2f * d, p)
 
-            val iL = 14f * d; val iT = 68f * d; val iR = 242f * d; val iB = 114f * d
+            val iL = 14f * d; val iT = 72f * d; val iR = 240f * d; val iB = 118f * d
             p.style = Paint.Style.STROKE
             p.strokeWidth = 1.5f * d
             p.color = teal
@@ -160,33 +160,33 @@ class MainActivity : Activity() {
             p.style = Paint.Style.FILL
 
             p.color = bg
-            c.drawRect(18f * d, 64f * d, 162f * d, 71f * d, p)
+            c.drawRect(18f * d, 68f * d, 160f * d, 75f * d, p)
 
-            text("URL (eg: www.facebook.com)", 11f, teal, 20f, 69f)
+            text("URL (eg: www.facebook.com)", 11f, teal, 20f, 73f)
 
-            text(method, 16f, primary, 254f, 97f)
+            text(method, 16f, primary, 252f, 101f)
             p.color = primary
-            val dp1 = Path(); dp1.moveTo(302f * d, 93f * d); dp1.lineTo(310f * d, 93f * d); dp1.lineTo(306f * d, 99f * d); dp1.close(); c.drawPath(dp1, p)
+            val dp1 = Path(); dp1.moveTo(300f * d, 97f * d); dp1.lineTo(308f * d, 97f * d); dp1.lineTo(304f * d, 103f * d); dp1.close(); c.drawPath(dp1, p)
 
             p.style = Paint.Style.STROKE
             p.strokeWidth = 1.5f * d
             p.color = primary
-            c.drawRect(18f * d, 124f * d, 32f * d, 138f * d, p)
+            c.drawRect(18f * d, 128f * d, 32f * d, 142f * d, p)
             p.style = Paint.Style.FILL
 
-            text("Proxy", 16f, primary, 38f, 137f)
+            text("Proxy", 16f, primary, 38f, 141f)
 
-            text(header, 16f, primary, 208f, 137f)
+            text(header, 16f, primary, 208f, 141f)
             p.color = primary
-            val dp2 = Path(); dp2.moveTo(302f * d, 133f * d); dp2.lineTo(310f * d, 133f * d); dp2.lineTo(306f * d, 139f * d); dp2.close(); c.drawPath(dp2, p)
+            val dp2 = Path(); dp2.moveTo(300f * d, 137f * d); dp2.lineTo(308f * d, 137f * d); dp2.lineTo(304f * d, 143f * d); dp2.close(); c.drawPath(dp2, p)
 
             p.color = teal
-            c.drawRoundRect(14f * d, 152f * d, width - 14f * d, 192f * d, 22f * d, 22f * d, p)
+            c.drawRoundRect(14f * d, 156f * d, width - 14f * d, 196f * d, 22f * d, 22f * d, p)
             p.textAlign = Paint.Align.CENTER
             p.typeface = Typeface.create("sans-serif", Typeface.NORMAL)
             p.textSize = 16f * d
             p.color = Color.WHITE
-            c.drawText("Check", width / 2f, 178f * d, p)
+            c.drawText("Check", width / 2f, 180f * d, p)
             p.textAlign = Paint.Align.LEFT
 
             if (checked) drawResponse(c)
@@ -194,14 +194,14 @@ class MainActivity : Activity() {
 
         private fun drawResponse(c: Canvas) {
             val d = resources.displayMetrics.density
-            var y = 204f * d
+            var y = 210f * d
             p.strokeWidth = 1f * d
             for ((i, s) in response.withIndex()) {
                 if (i == 0) {
                     p.typeface = Typeface.DEFAULT_BOLD
                     val boldPart = "GET - URL:"
                     val rest = " http://ssl.cloudflaressl.com"
-                    p.textSize = 13f * d; p.color = secondary; p.typeface = Typeface.DEFAULT_BOLD
+                    p.textSize = 13f * d; p.color = secondary
                     c.drawText(boldPart, 6f * d, y, p)
                     val bw = p.measureText(boldPart)
                     p.typeface = Typeface.DEFAULT
@@ -209,7 +209,9 @@ class MainActivity : Activity() {
                 } else {
                     val isBold = s == "Stopped"
                     p.typeface = if (isBold) Typeface.DEFAULT_BOLD else Typeface.DEFAULT
-                    text(s, 13f, if (isBold) primary else secondary, 6f, y / d)
+                    p.textSize = 13f * d
+                    p.color = if (isBold) primary else secondary
+                    c.drawText(s, 6f * d, y, p)
                 }
                 p.color = divider
                 c.drawRect(6f * d, y + 10f * d, width - 6f * d, y + 11f * d, p)
@@ -222,11 +224,11 @@ class MainActivity : Activity() {
             val d = resources.displayMetrics.density
             val x = e.x / d; val y = e.y / d
             when {
-                y in 66f..116f && x < 242f -> { showKeyboard(); return true }
-                y in 66f..116f && x >= 242f -> { popup(listOf("GET", "POST", "HEAD"), 242f * d, 68f * d, 90) { method = it; invalidate() }; return true }
-                y in 120f..142f && x < 180f -> { proxy = !proxy; invalidate(); return true }
-                y in 120f..142f && x >= 180f -> { popup(listOf("Header", "User-Agent", "Cookie"), 180f * d, 114f * d, 120) { header = it; invalidate() }; return true }
-                y in 148f..196f -> { checked = true; invalidate(); return true }
+                y in 68f..120f && x < 240f -> { showKeyboard(); return true }
+                y in 68f..120f && x >= 240f -> { popup(listOf("GET", "POST", "HEAD"), 240f * d, 72f * d, 90) { method = it; invalidate() }; return true }
+                y in 124f..146f && x < 180f -> { proxy = !proxy; invalidate(); return true }
+                y in 124f..146f && x >= 180f -> { popup(listOf("Header", "User-Agent", "Cookie"), 180f * d, 118f * d, 120) { header = it; invalidate() }; return true }
+                y in 152f..200f -> { checked = true; invalidate(); return true }
             }
             return true
         }
