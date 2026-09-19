@@ -103,29 +103,29 @@ class MainActivity : Activity() {
             p.color=teal;c.drawRect(0f,0f,width.toFloat(),dp(64f),p)
             // back arrow
             p.color=Color.WHITE;p.strokeWidth=dp(2.2f);p.style=Paint.Style.STROKE;p.strokeCap=Paint.Cap.SQUARE
-            c.drawLine(dp(21),dp(32),dp(31),dp(22),p);c.drawLine(dp(21),dp(32),dp(31),dp(42),p);c.drawLine(dp(21),dp(32),dp(41),dp(32),p);p.style=Paint.Style.FILL
-            text("Host Checker",25f,Color.WHITE,54,42)
+            c.drawLine(dp(21f),dp(32f),dp(31f),dp(22f),p);c.drawLine(dp(21f),dp(32f),dp(31f),dp(42f),p);c.drawLine(dp(21f),dp(32f),dp(41f),dp(32f),p);p.style=Paint.Style.FILL
+            text("Host Checker",25f,Color.WHITE,54f,42f)
             // vertical menu
-            p.color=Color.WHITE;c.drawCircle(dp(338),dp(20),dp(2.7f),p);c.drawCircle(dp(338),dp(32),dp(2.7f),p);c.drawCircle(dp(338),dp(44),dp(2.7f),p)
+            p.color=Color.WHITE;c.drawCircle(dp(338f),dp(20f),dp(2.7f),p);c.drawCircle(dp(338f),dp(32f),dp(2.7f),p);c.drawCircle(dp(338f),dp(44f),dp(2.7f),p)
             // input outline + floating label
             val left=dp(6f);val top=dp(72f);val right=dp(223f);val bottom=dp(116f)
             p.style=Paint.Style.STROKE;p.strokeWidth=dp(2.2f);p.color=teal;c.drawRoundRect(left,top,right,bottom,dp(4f),dp(4f),p);p.style=Paint.Style.FILL
-            p.color=bg;c.drawRect(dp(28),dp(68),dp(178),dp(78),p)
-            text("URL (eg: www.facebook.com)",14f,Color.rgb(20,111,133),25,76)
+            p.color=bg;c.drawRect(dp(28f),dp(68f),dp(178f),dp(78f),p)
+            text("URL (eg: www.facebook.com)",14f,Color.rgb(20,111,133),25f,76f)
             // GET selector
-            text(method,18f,primary,236,91); drawDown(c,341,88)
+            text(method,18f,primary,236f,91f); drawDown(c,341f,88f)
             // proxy checkbox
-            p.style=Paint.Style.STROKE;p.strokeWidth=dp(2);p.color=Color.rgb(215,208,216);c.drawRoundRect(dp(12),dp(132),dp(28),dp(152),dp(1),dp(1),p);p.style=Paint.Style.FILL
-            if(proxy){p.color=teal;c.drawRect(dp(12),dp(132),dp(28),dp(152),p);p.color=Color.WHITE;p.strokeWidth=dp(2);p.style=Paint.Style.STROKE;c.drawLine(dp(16),dp(142),dp(21),dp(147),p);c.drawLine(dp(21),dp(147),dp(26),dp(137),p);p.style=Paint.Style.FILL}
-            text("Proxy",18f,primary,34,149)
-            text(header,18f,primary,210,149);drawDown(c,341,145)
+            p.style=Paint.Style.STROKE;p.strokeWidth=dp(2f);p.color=Color.rgb(215,208,216);c.drawRoundRect(dp(12f),dp(132f),dp(28f),dp(152f),dp(1f),dp(1f),p);p.style=Paint.Style.FILL
+            if(proxy){p.color=teal;c.drawRect(dp(12f),dp(132f),dp(28f),dp(152f),p);p.color=Color.WHITE;p.strokeWidth=dp(2f);p.style=Paint.Style.STROKE;c.drawLine(dp(16f),dp(142f),dp(21f),dp(147f),p);c.drawLine(dp(21f),dp(147f),dp(26f),dp(137f),p);p.style=Paint.Style.FILL}
+            text("Proxy",18f,primary,34f,149f)
+            text(header,18f,primary,210f,149f);drawDown(c,341f,145f)
             // check button
-            p.color=teal;c.drawRoundRect(dp(6),dp(172),width-dp(6),dp(210),dp(25),dp(25),p);p.textAlign=Paint.Align.CENTER;p.textSize=dp(18);p.color=Color.WHITE;c.drawText("Check",width/2f,dp(196),p);p.textAlign=Paint.Align.LEFT
+            p.color=teal;c.drawRoundRect(dp(6f),dp(172f),width-dp(6f),dp(210f),dp(25f),dp(25f),p);p.textAlign=Paint.Align.CENTER;p.textSize=dp(18f);p.color=Color.WHITE;c.drawText("Check",width/2f,dp(196f),p);p.textAlign=Paint.Align.LEFT
             if(checked) drawResponse(c)
         }
         private fun drawDown(c:Canvas,x:Float,y:Float){p.color=Color.rgb(216,210,217);val path=Path();path.moveTo(dp(x-6),dp(y-3));path.lineTo(dp(x+6),dp(y-3));path.lineTo(dp(x),dp(y+4));path.close();c.drawPath(path,p)}
-        private fun drawResponse(c:Canvas){ var y=dp(225f); p.strokeWidth=dp(1f); for((i,s) in response.withIndex()){ if(i==0){p.typeface=Typeface.DEFAULT; text(s,16f,secondary,6,y/dp(1f));} else { text(s,16f, if(s=="Stopped")primary else secondary,6,y/dp(1f)); }
-                p.color=divider;c.drawRect(dp(6),y+dp(8),width-dp(6),y+dp(9),p); y += dp(20f)
+        private fun drawResponse(c:Canvas){ var y=dp(225f); p.strokeWidth=dp(1f); for((i,s) in response.withIndex()){ if(i==0){p.typeface=Typeface.DEFAULT; text(s,16f,secondary,6f,y/dp(1f));} else { text(s,16f, if(s=="Stopped")primary else secondary,6f,y/dp(1f)); }
+                p.color=divider;c.drawRect(dp(6f),y+dp(8f),width-dp(6f),y+dp(9f),p); y += dp(20f)
             }
             p.typeface=Typeface.DEFAULT_BOLD
         }
